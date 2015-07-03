@@ -1,0 +1,32 @@
+.jumbotron {
+  position: relative;
+  background: url("../img/jumbotron.png") center center;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  background-size: cover;
+  overflow: hidden;
+}
+ 
+.center-align {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+  width: 100%;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.panel-heading {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+  

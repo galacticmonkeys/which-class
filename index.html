@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Which Class Should I Choose?</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="js/prefixfree.min.js"></script>
+</head>
+<body>
+<nav id="navbar" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">1061AS61A</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#comparisons">Comparisons</a></li> 
+        <li><a href="#opinions">Opinions</a></li> 
+        <li><a href="#faq">FAQ</a></li> 
+        <li><a href="survey.html">Help me decide!</a></li> 
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <div class="center-align">
+    <h1>CS10, CS61AS, CS61A</h1>
+    <h2>Which class should I take?</h2>      
+    <p>The comprehensive guide</p>
+  </div>
+</div>  
+
+<div data-spy="scroll" data-target="#navbar" class="test">
+<div class="container">
+  <div class="row">
+    <a href="http://cs10.org">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">CS 10</div>
+            <div class="panel-body">CS10 is geared for non-majors and majors who have not programmed before. It teaches many big ideas (e.g., social implications of computing, how the internet works, data, creativity), uses a really friendly graphical language, as well as set students up for success in CS61A by providing them an introduction to Python.
+            </div>
+        </div>
+      </div>
+    </a>
+    <a href="http://cs61a.org/about.html ">
+      <div class="col-md-4">        
+        <div class="panel panel-default">
+          <div class="panel-heading">CS 61A</div>
+          <div class="panel-body">In CS 61A, we are interested in teaching you about programming, not about how to use one particular programming language. We consider a series of techniques for controlling program complexity, such as functional programming, data abstraction, and object-oriented programming. Mastery of a particular programming language is a very useful side effect of studying these general techniques. However, our hope is that once you have learned the essence of programming, you will find that picking up a new programming language is but a few days’ work.
+          </div>
+        </div>
+      </div>
+    </a>
+    <a href="https://docs.google.com/document/d/1qrZFkXMKNJKgIXmjaEP1EXypw-unRF7UO9x6t0khgGM/edit#heading=h.tqs2pmpvne09">
+      <div class="col-md-4">        
+        <div class="panel panel-default">
+          <div class="panel-heading">CS 61AS</div>
+          <div class="panel-body">CS61AS is an alternate intro CS course that covers the same concepts as 61A, but in a different class format and programming language. It’s a lab based class (no lecture, spend most of your time one-on-one with the TAs in lab), and there are no midterms (there are instead smaller, retake-able quizzes).
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+  <div id="comparisons">
+    <div class="container">
+      <h1 class="text-center">Comparisons</h1>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <th>CS 10</th>
+            <th>CS 61A</th>
+            <th>CS 61AS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Format</strong></td>
+            <td>Lectures, with regular guest lectures by well-known Computer Scientists; discussions and labs</td>
+            <td>Lectures; discussions and labs</td>
+            <td>Lab-centric; discussions</td>
+          </tr>
+          <tr>
+            <td><strong>Time Commitment</strong></td>
+            <td>4 units</td>
+            <td>4 units, but people often say this is their most time-consuming course</td>
+            <td>Variable, you can take 1-4 units over one or two semesters.</td>
+          </tr>
+          <tr>
+            <td><strong>Counts toward major?</strong></td>
+            <td>No. CS 10 does not count toward the CS major</td>
+            <td>Yes. CS 61A also covers some other majors’ pre-reqs, such as BioE and CogSci.</td>
+            <td>Yes. 4 units of 61AS is equivalent to any major req that requires 61A.</td>
+          </tr>
+          <tr>
+            <td><strong>What if I've never programmed before?</strong></td>
+            <td>CS 10 is designed for students without previous programming experience.</td>
+            <td>Despite its fast pace, CS 61A has many different avenues for support, including extra review sessions and tutoring.</td>
+            <td>CS 61AS has an optional “unit 0” (1 P/NP unit of CS 98) designed for a gentler introduction to CS and programming.</td>
+          </tr>
+          <tr>
+            <td><strong>What programming languages are taught?</strong></td>
+            <td>Mainly Snap!, and a bit of Python during the last 4 weeks</td>
+            <td>Python. A bit of Scheme (build a Scheme interpreter) and SQL.</td>
+            <td>Scheme/Racket. A bit of Python (build a Python interpreter) and Logic.</td>
+          </tr>
+          <tr>
+            <td><strong>Brief list of topics discussed</strong></td>
+            <td>
+              <ul>
+                <li>Applications of CS (Graphics, HCI, AI, more)</li>
+                <li>2 Personal Projects</li>
+                <li>Recursion / HOFs</li>
+                <li>Data Science Ideas</li>
+                <li>Internet Architecture</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Programming and Big Ideas of CS</li>
+                <li>4 Projects</li>
+                <li>Recursion / HOFs</li>
+                <li>Hierarchical Data</li>
+                <li>OOP</li>
+                <li>Interpreters</li>
+                <li>Databases (SQL)</li>
+              </ul>
+            </td>
+            <td>Very similar to 61A.  Instead of databases (SQL), we teach Logic, but the other 95% of concepts are the same.</td>
+          </tr>
+          <tr>
+            <td><strong>Rough class sizes (as of Fall 2014)</strong></td>
+            <td>300</td>
+            <td>1200+</td>
+            <td>100</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+   <div id="faq">
+    <div class="container">
+      <h1 class="text-center">FAQ</h1>
+      <p>someone finish the faq on gDocs</p>
+    </div>
+  </div>
+
+  <div id="opinions">
+    <div class="container">
+      <h1 class="text-center">Opinions</h1>
+      <h2>On Taking CS10</h2>
+      <h4>Michael Ball</h4>
+      <em>CS10 Summer 2015 Lecturer, CS10 Head TA</em><br><br>
+      <blockquote>
+CS10 is, in many ways, unique. A large goal of CS10 is to expose students to many topics of computer science, including graphics, Game Theory, Human-Computer Interaction, distributed computing and some others depending on the semester. There is a sizable discussion about the social aspects of computing and how that affects everyone, which is enjoyable for many students because it’s a different thought process than programming, but is also something that some students may prefer to skip.<br><br>
+
+CS10 focuses on helping you figure out how to structure programs and solve problems, like any other CS class. The use of Snap! is a really good starting point if you’re unsure about CS or programming but does require some transition to a language like Python, which is done during the final third of CS10. CS10 covers about 85% of topics that CS61A does, but at a bit less depth than 61A. For example, in both classes you learn about recursion and memoization (among many topics) but in CS 61A, you will spend more time analyzing complex recursive functions or implementing memoization whereas CS10 will cover these topics but you won’t be assessed at as deep a level.<br><br> 
+
+People who are motivated by personal creativity will almost certainly find CS10’s personal projects more fulfilling, IMO. CS10 projects certainly give you more free reign, and emphasize the creative aspect of computer science, rather than the technical aspect.<br><br>
+
+      </blockquote> 
+      <br>
+
+      <h2>On Taking 61A</h2>
+      <h4>Andrew Huang</h4>
+      <em>61A Summer 2014 Co-Lecturer, Fall 2014/Spring 2015 EECS Course Manager, 61AS/61A/61B TA</em><br><br>
+      <blockquote>
+        From my experience, there are a nontrivial number of students with no prior programming experience who have a really tough time with 61A. When I say tough, I mean something like “this class takes more time than all the other classes I’m taking combined.”<br><br>
+        Programming experience doesn’t really speak to whether or not you’re prepared, it’s more nuanced than that. Once you have programmed for an extended period of time, you develop this resistance to failure (pressing on despite hardship) which is essential to doing well in 61A. That’s what’s really key in being able to handle this class.<br><br>
+        “This class is the hardest thing I’ve ever done.” is also a common (but not universal) quip among students with no programming experience. And this is a result not of any single assignment, but the fact that the course is fast paced—there’s a lot to understand and apply, and inherently not enough time to master it all (though taking fewer classes helps).<br><br>
+        From this, I would say that whether or not you take this course next semester depends on how you think you would be able to handle a class that may necessarily push your limits and force you confront failure and frustration each week.
+      </blockquote>
+      <br>
+
+      <h2>Todo: Rohin</h2>
+      <h4>Rohin Shah</h4>
+      <em>61A Summer 2014 Co-Lecturer, CS 61AS/61B/161/170/188 TA</em><br><br>
+      <blockquote>
+        Rohin write something. Lorem ipsum dolor sit amet, Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis lao
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
