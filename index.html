@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="js/extras.js"></script>
   <script src="js/prefixfree.min.js"></script>
 </head>
 <body>
@@ -153,17 +154,51 @@
     </div>
   </div>
 
-   <div id="faq">
+  <div id="faq">
     <div class="container">
       <h1 class="text-center">FAQ</h1>
-      <p>someone finish the faq on gDocs</p>
+      <h4 onclick="faqToggler('question1')"><a>Why does 61AS use Scheme/Racket when 61A uses Python?</a></h4>
+      <div id="question1" class="hidden">
+        <em>By Rohin Shah</em><br><br>
+        <div>
+          The reason is that the 61AS staff believes that Scheme/Racket is a good educational language.  There is very minimal syntax - we teach you the basic structure of the language in the first day, which allows us to spend the rest of the time teaching you computer science.  In addition, we can teach many different programming paradigms (functional, imperative, object oriented) and they are all fairly natural in Scheme/Racket.  (In Python, functional programming is doable, but very strange and unusual.)  The 61AS staff (along with most other people, including 61A staff) believe that which programming language you learn first is not particularly important, as long as you learn the principles of CS and programming.
+
+          In contrast, 61A chose to use Python because there is more support for Python (since it is used more), and there is a larger community of people who know Python which makes it easier for students.  (For example, Google will be more helpful for Python than for Scheme/Racket.)
+
+          (There are also more historical reasons for the difference between 61A and 61AS, which are not particularly important.)
+        </div>
+      </div>
+      <br> 
+      <h4 onclick="faqToggler('question2')"><a>Since CS 61A is taught in Python while CS 61AS is taught in Scheme/Racket, shouldn’t I choose 61A so that I learn Python?</a></h4>
+      <div id="question2" class="hidden">
+        <em>By Rohin Shah</em><br><br>
+        <div>
+          People give many reasons for this:
+          <ol>
+            <li>Some upper division students told them Python is better than Scheme/Racket</li>
+            <li>Python is used more in real-world programming than Scheme/Racket, so it is more useful to know it</li>
+            <li>There are more people who can help with Python problems than Scheme/Racket problems</li>
+            <li>Python is easier to learn than Scheme/Racket</li>
+            <li>If you program in Scheme/Racket you’ll spend all your time counting parens</li>
+          </ol>
+          To address each of the points above individually:
+          <ol>
+            <li>I’d like to note that I know both Scheme/Racket and Python very well.  I’ve programmed in both for about 4 years.  The typical upper division student has programmed in Scheme for all of 3 weeks in 61A.  They don’t know Scheme.  As a result, some (not all) of their criticism is unjustified.  For example, saying “Scheme is harder because it takes me longer to write programs in it”.  Of course that’s true, if you’ve only programmed in it for 3 weeks!  That would be true of any language that you don’t have significant experience with.  If you are basing your decision based on other students saying “Python is better”, ask those students for their reasoning about why Python is better - it will probably fall into one of the other points on my list.</li>
+            <li>Yes, it’s true, Python is used more in the real world.  And yes, if you only ever got to learn one language, you should choose Python.  That said, why do you think you are only going to learn one language?  If you are a CS major, that will definitely not be the case, if you are a non-major, it still likely won’t be true if you continue to program after taking 61A/AS.  One of the distinguishing features of programmers is that they can learn the basics of new programming languages quickly.  Becoming an expert in a particular language takes significantly longer; however, 61A is not going to make you an expert in Python.  Not even close.  After taking 61AS, if you need to learn Python, you can, and it won’t take you long to get up to par with a 61A student.<br>Of course, you might still ask why you wouldn’t just learn Python in the first place, and save yourself some effort.  My answer there is that it is because Scheme is a good educational language - see the FAQ “Why does 61AS use Scheme/Racket instead of Python?”</li>
+            <li>This is a valid point, and is a downside of learning Scheme/Racket.  That said, the 61AS staff is incredibly helpful.  There are typically 20 hours each week where you can talk to a TA in person, and instructors are responsive on Piazza.</li>
+            <li>I have a particular way of holding a pencil.  It’s not the “correct” way to hold a pencil - all my life I’ve had people tell me “You’re holding the pencil wrong, let me teach you the right way.”  The first two or three times, I did actually try to hold the pencil right, but it was so difficult.  My writing speed halved, my fingers and hand hurt more, and I gave up quickly.  I’m sure if I put in the time and practiced, the right way would become natural.  Programming is similar - when you learn your second language, you keep thinking “Oh, I really want to do X the way I did in my first language, this second language sucks, it can’t even do that.”  What you forget is that learning how to do X in your first language also took a long time, even though it seems completely natural now.  As a result, all those people who learned Python before Scheme will likely say “Scheme is unintuitive and hard to learn, choose Python instead”.<br>Another point is that the people who say this typically don’t know Scheme.  See point 1.</li>
+            <li>If you spend your time in Scheme counting parens, you’re doing it wrong.  If you write your Scheme code on paper, then yes, you’ll have to count parens.  But you write code on a computer with a text editor - even a basic set of features will eliminate the need to count parens.  All I need out of a text editor is the ability to automatically indent Scheme code, and to highlight matching parens.  Emacs does this out of the box, and Sublime can be configured to do so as well.  “Scheme is about counting parens” is as nonsensical as “Cooking is about turning on the stove” - yes, you usually do need to turn on the stove to cook, but that’s not what you focus your energy on.</li>
+          </ol>
+        </div>
+      </div> 
+
     </div>
   </div>
 
   <div id="opinions">
     <div class="container">
       <h1 class="text-center">Opinions</h1>
-      <h2>On Taking CS10</h2>
+      <h3>On Taking CS10</h3>
       <h4>Michael Ball</h4>
       <em>CS10 Summer 2015 Lecturer, CS10 Head TA</em><br><br>
       <blockquote>
@@ -176,7 +211,7 @@ People who are motivated by personal creativity will almost certainly find CS10�
       </blockquote> 
       <br>
 
-      <h2>On Taking 61A</h2>
+      <h3>On Taking 61A</h3>
       <h4>Andrew Huang</h4>
       <em>61A Summer 2014 Co-Lecturer, Fall 2014/Spring 2015 EECS Course Manager, 61AS/61A/61B TA</em><br><br>
       <blockquote>
@@ -187,7 +222,7 @@ People who are motivated by personal creativity will almost certainly find CS10�
       </blockquote>
       <br>
 
-      <h2>Todo: Rohin</h2>
+      <h3>General Advice</h3>
       <h4>Rohin Shah</h4>
       <em>61A Summer 2014 Co-Lecturer, CS 61AS/61B/161/170/188 TA</em><br><br>
       <blockquote>
