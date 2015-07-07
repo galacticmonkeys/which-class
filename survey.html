@@ -6,60 +6,37 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Help Me Decide!</title>
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="css/survey.css">
     <script src="js/prefixfree.min.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/handlebars-v3.0.3.min.js"></script>
+    <script src="js/surveyextras.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/survey.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body class="impress-not-supported">
 <div class="fallback-message">
     <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
     <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
 </div>
-<div id="impress">
-  <div id="more-cs" class="step text-center" data-x="0" data-y="0" data-z="1000" data-scale="2">
-    <h1>Do you plan to take another computer science course?</h1>
-    <a href="#/early-in-college"><button type="button" class="btn btn-success">Yes</button></a>
-    <a href="#/eecs-major"><button type="button" class="btn btn-warning">Maybe</button></a>
-    <a href="#/cs10"><button type="button" class="btn btn-danger">No</button></a>
-  </div>
-  <div id="eecs-major" class="step text-center" data-x="1000" data-rotate-x="35" data-y="0" data-rotate-y="-45" data-z="0">
-    <h1>Are you an EECS/CS major?</h1>
-    <a href="#/cs61a"><button type="button" class="btn btn-success">Yes</button></a>
-    <a href="#/cs61a"><button type="button" class="btn btn-warning">Maybe</button></a>
-    <a href="#/extra-semester"><button type="button" class="btn btn-danger">No</button></a>
-  </div>
-  <div id="extra-semester" class="step text-center" data-x="1500" data-rotate-x="-23" data-y="-900" data-rotate-y="-45" data-z="35">
-    <h1>Are you willing to spend an “extra semester” taking CS 10?</h1>
-    <a href="#/app-or-program"><button type="button" class="btn btn-success">Yes</button></a>
-    <a href="#/cs61a"><button type="button" class="btn btn-danger">No</button></a>
-  </div>
-  <div id="app-or-program" class="step text-center" data-x="1200" data-y="300" data-z="90">
-    <h1>Are you interested more in applications of computer science, or learning how to program?</h1>
-    <a href="#/cs10"><button type="button" class="btn btn-success">Applications</button></a>
-    <a href="#/cs61a"><button type="button" class="btn btn-danger">Programming</button></a>
-  </div>
-  <div id="early-in-college" class="step text-center" data-x="300" data-y="500" data-z="-100">
-    <h1>Are you early in your college career?</h1>
-    <a href="#/cs10"><button type="button" class="btn btn-success">Yes</button></a>
-    <a href="#/cs61a"><button type="button" class="btn btn-danger">No</button></a>
-  </div>
-  <div id="cs10" class="step" data-x="-1000" data-y="-1000" data-z="5000">
-    <h1>CS 10!</h1>
-    <a href="index.html"><button type="button" class="btn-primary btn-sm">Go Back</button></a>
-  </div>
-  <div id="cs61as" class="step" data-x="-2000" data-y="-1000" data-z="5000">
-    <h1>CS 61AS!</h1>
-    <a href="index.html"><button type="button" class="btn-primary btn-sm">Go Back</button></a>
-  </div>
-  <div id="cs61a" class="step" data-x="-3000" data-y="-1000" data-z="5000">
-    <h1>CS 61A!</h1>
-    <a href="index.html"><button type="button" class="btn-primary btn-sm">Go Back</button></a>
-  </div>
-</div>
-<script src="js/impress.min.js"></script>
-<script>impress().init();</script>
+<div id="impress"></div>
+
+<script id="template" type="x-handlebars-template">
+   {{#each this}}
+    <div class="step text-center" data-x={{random1}} data-y={{random2}} data-z={{random3}} 
+      data-rotate-z={{random4}} data-rotate-x={{random5}} data-rotate-y={{random6}} data-scale="3">
+      <h1>{{question}}</h1>
+      <button type="button" class="btn btn-success">{{response1}}</button>
+      {{#if response2}}
+        <button type="button" class="btn btn-warning">{{response2}}</button>
+      {{/if}}
+      <button type="button" class="btn btn-danger">{{response3}}</button>
+      {{#if response4}}
+        <button type="button" class="btn">{{response4}}</button>
+      {{/if}}
+    </div>
+   {{/each}}
+</script> 
+
 </body>
 </html>
