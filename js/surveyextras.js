@@ -109,7 +109,7 @@ $(document).ready(function() {
         random5:getRandomInt(0, 360),
         random6:getRandomInt(0, 360) 
     },
-    {   question:"Would you be stressed out by a large class size (2500+ students)?",
+    {   question:"Would you be stressed out by a large class size (1000+ students)?",
         response1:"Yes",
         response2:"Maybe",
         response3:"No",
