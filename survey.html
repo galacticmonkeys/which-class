@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Help Me Decide!</title>
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
     <script src="js/prefixfree.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/handlebars-v3.0.3.min.js"></script>
     <script src="js/surveyextras.js"></script>
+    <script src="js/impress.js"></script>
     <link rel="stylesheet" type="text/css" href="css/survey.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
@@ -23,16 +24,16 @@
 
 <script id="template" type="x-handlebars-template">
    {{#each this}}
-    <div class="step text-center" data-x={{random1}} data-y={{random2}} data-z={{random3}} 
+    <div id="question{{@index}}" class="step text-center" data-x={{random1}} data-y={{random2}} data-z={{random3}} 
       data-rotate-z={{random4}} data-rotate-x={{random5}} data-rotate-y={{random6}} data-scale="3">
       <h1>{{question}}</h1>
-      <button type="button" class="btn btn-success">{{response1}}</button>
+      <a href="#/question{{inc1 @index}}"><button type="button" class="btn btn-success button1">{{response1}}</button></a>
       {{#if response2}}
-        <button type="button" class="btn btn-warning">{{response2}}</button>
+        <a href="#/question{{inc1 @index}}"><button type="button" class="btn btn-warning button2">{{response2}}</button></a>
       {{/if}}
-      <button type="button" class="btn btn-danger">{{response3}}</button>
+      <a href="#/question{{inc1 @index}}"><button type="button" class="btn btn-danger button3">{{response3}}</button></a>
       {{#if response4}}
-        <button type="button" class="btn">{{response4}}</button>
+        <a href="#/question{{inc1 @index}}"><button type="button" class="btn button4">{{response4}}</button></a>
       {{/if}}
     </div>
    {{/each}}
