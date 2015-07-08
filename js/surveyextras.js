@@ -1,4 +1,5 @@
-var score1, score2;
+var score1, score2; 
+var finishedQuiz = false;
 var answerBank = {
   question0:0,
   question1:0,
@@ -21,10 +22,21 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-var zStart=-5500;
-var increment=1000;
-function getNonRandomInt(increment) {
-  return zStart + increment;
+function calculateScore1() {
+  score1 = answerBank.question2 + answerBank.question3 + (4 * answerBank.question5) + (2 * answerBank.question6);
+}
+
+function calculateScore2() {
+  score2 = (2 * answerBank.question6) + (2 * answerBank.question7) + answerBank.question9 + answerBank.question10;
+}
+
+function calculateFinal() {
+  if (finishedQuiz) {
+    calculateScore1();
+    calculateScore2();
+  } else {
+    alert("you haven't answered all the questions!");
+  }
 }
 
 $(document).ready(function() {
@@ -44,7 +56,7 @@ $(document).ready(function() {
         response4:"61A would be easy for me", //popup here describing star
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:zStart,
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -56,7 +68,7 @@ $(document).ready(function() {
 	      response4:"20", 
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -67,7 +79,7 @@ $(document).ready(function() {
         response3:"No",
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -78,7 +90,7 @@ $(document).ready(function() {
         response3:"No",
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -88,7 +100,7 @@ $(document).ready(function() {
         response3:"No",
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -100,7 +112,7 @@ $(document).ready(function() {
         response4:"I want to make a website", //popup for decal here
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -111,7 +123,7 @@ $(document).ready(function() {
         response3:"Very worried",
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -122,7 +134,7 @@ $(document).ready(function() {
         response3:"Readings are enough",
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -133,7 +145,7 @@ $(document).ready(function() {
         response3:"No", //popup on imperative ask
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -144,7 +156,7 @@ $(document).ready(function() {
         response3:"No",
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -155,7 +167,7 @@ $(document).ready(function() {
         response3:"Midterms",
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
-        dataZ:getNonRandomInt(increment),
+        dataZ:getRandomInt(-2500, 2500),
         dataRotateZ:getRandomInt(0, 180),
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
@@ -170,10 +182,11 @@ $(document).ready(function() {
   });
 
   $(":button").on("click", function() {
-   // var id = $(":button").closest("div").attr("id");
-    //console.log(id);
+    var questionNumber = $(this).closest("div").attr("id");
+    var buttonValue = $(this).attr("id");
+    if (questionNumber == "question10") {
+      finishedQuiz = true;
+    }
+    answerBank[questionNumber] = Number(buttonValue);
   });
 });
-
-score1 = answerBank.question2 + answerBank.question3 + (4 * answerBank.question5) + (2 * answerBank.question6);
-score2 = (2 * answerBank.question6) + (2 * answerBank.question7) + answerBank.question9 + answerBank.question10;
