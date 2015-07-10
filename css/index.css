@@ -2,6 +2,10 @@
   display: none;
 }
 
+.quotes {
+  font-size: 14px;
+}
+
 .jumbotron {
   position: relative;
   background: url("../img/jumbotron.png") center center;

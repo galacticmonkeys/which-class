@@ -1,5 +1,57 @@
-var score1, score2; 
+var score1, score2;
+var finalResults1 = "CS10 would not be suited for you";
+var finalResults2 = "CS61A would not be suited for you";
 var finishedQuiz = false;
+var nocs61a = false;
+var nocs10 = false;
+
+//reading Rohin's table: rows, then columns
+//yes, it's rather unfortunate that question 1 comes before question 0
+//maybe change later but right now too tired to care :'(
+//and also copy and paste is tedious sigh
+var table = {
+  "1": {
+    "1":"no class",
+    "2":"CS61AS(2)",
+    "3":"CS61AS(2)",
+    "4":"CS10, CS61AS(3)"
+  },
+  "2": {
+    "1":"CS61AS(2)",
+    "2":"CS10, CS61AS(3)",
+    "3":"CS10, CS61AS(3)",
+    "4":"CS10, CS61A, CS61AS"
+  },
+  "3": {
+    "1":"CS10, CS61AS(3)",
+    "2":"CS10, CS61AS(3)",
+    "3":"CS10, CS61A, CS61AS",
+    "4":"CS10, CS61A, CS61AS"
+  },
+  "4": {
+    "1":"CS10, CS61A, CS61AS",
+    "2":"CS10, CS61A, CS61AS",
+    "3":"CS10, CS61A, CS61AS",
+    "4":"CS10, CS61A, CS61AS",
+  }
+}
+
+var score1Table = {
+  '8-10': 'You are more suited to 61A/61AS than 10',
+  '11-14':'You have a slight preference to 61A/61AS over 10',
+  '15-17': 'You would do well in both 10 and 61A/61AS',
+  '18-21': 'You have a slight preference to 10 over 61A/61AS',
+  '22-24': 'You are more suited to 10 than 61A/61AS'
+}
+
+var score2Table = {
+  '6-7': 'You are more suited to 61AS than 61A',
+  '8-10': 'You have a slight preference to 61AS over 61A',
+  '11-13': 'You would do well in both 61AS and 61A, maybe take 61A since it is bigger',
+  '14-16': 'You have a slight preference to 61A over 61AS',
+  '17-18': 'You are more suited to 61A than 61AS'
+}
+
 var answerBank = {
   question0:0,
   question1:0,
@@ -22,6 +74,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function inclusiveRange(x, a, b) {
+  return ((a <= x) && (x <= b));
+}
+
 function calculateScore1() {
   score1 = answerBank.question2 + answerBank.question3 + (4 * answerBank.question5) + (2 * answerBank.question6);
 }
@@ -34,6 +90,53 @@ function calculateFinal() {
   if (finishedQuiz) {
     calculateScore1();
     calculateScore2();
+    console.log("score1 is " + score1);
+    console.log("score2 is " + score2);
+    if (answerBank.question6 == 3) {
+      nocs61A = true;
+      console.log("cs61a eliminated");
+    }
+    if ((answerBank.question4 == 3) &&
+        ((answerBank.question2 == 1 ) ||
+         (answerBank.question2 == 2) ||
+         (answerBank.question3 == 1))) {
+      nocs10 = true;
+      console.log("cs10 eliminated");
+    } 
+    
+    //check of score1 is within range
+    //find the first true option
+    if (!nocs10) {
+      for (var key in score1Table) {
+        if (score1Table.hasOwnProperty(key)) {
+          var tempArray1 = key.split("-");
+          if (inclusiveRange(score1, Number(tempArray1[0]), Number(tempArray1[1]))) {
+            finalResults1 = score1Table[key];
+            break;
+          }   
+        }   
+      } 
+    }
+    
+    if (!nocs61a) {
+      for (var key in score2Table) {
+        if (score2Table.hasOwnProperty(key)) {
+          var tempArray2 = key.split("-");
+          if (inclusiveRange(score2, Number(tempArray2[0]), Number(tempArray2[1]))) {
+            finalResults2 = score2Table[key];
+            break;
+          }   
+        }   
+      } 
+    }
+    bootbox.alert("Based on time commitment and prior experience, " + 
+      "these are the classes most suited for you: " + 
+       table[answerBank.question2][answerBank.question1] + ". " +
+      "Your responses also indicate that " + finalResults1 + " and " + finalResults2 + ".",
+       function() {
+          window.location = 'index.html';
+       }
+       );
   } else {
     alert("you haven't answered all the questions!");
   }
@@ -181,12 +284,41 @@ $(document).ready(function() {
     impress().init(); 
   });
 
+  window.addEventListener("beforeunload", function (e) {
+    if (!finishedQuiz) {
+      var confirmationMessage = "The oompla loompa told me you haven't finished yet. I won't be able to save your progress. ";
+      confirmationMessage += "Are you sure you sure you want to leave?";
+
+      (e || window.event).returnValue = confirmationMessage;
+      return confirmationMessage;                          
+    }
+  });
+
   $(":button").on("click", function() {
     var questionNumber = $(this).closest("div").attr("id");
     var buttonValue = $(this).attr("id");
+    answerBank[questionNumber] = Number(buttonValue);
+    if (questionNumber == "question8" && buttonValue == "3") {
+        bootbox.dialog({
+          message: "It is very crucial to be able to ask for help," +
+            "or else it become easy to get lost very quickly! I can't recommend any class " +
+            "unless you promise me you will ask for help when you need it",
+          show: true,
+          backdrop: true,
+          closeButton: false,
+          animate: true,
+          className: "ask-for-help",
+          buttons: {
+              success: {   
+              label: "I promise. Onward!",
+              className: "i-promise",
+            },
+          }
+        });
+    }
     if (questionNumber == "question10") {
       finishedQuiz = true;
+      calculateFinal();
     }
-    answerBank[questionNumber] = Number(buttonValue);
   });
 });
