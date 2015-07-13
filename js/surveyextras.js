@@ -318,8 +318,6 @@ $(document).ready(function() {
   window.addEventListener("beforeunload", function (e) {
     if (!finishedQuiz) {
       var confirmationMessage = "I won't be able to save your progress. ";
-      confirmationMessage += "Are you sure you sure you want to leave?";
-
       (e || window.event).returnValue = confirmationMessage;
       return confirmationMessage;                          
     }
