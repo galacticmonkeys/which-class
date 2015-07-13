@@ -27,15 +27,29 @@
     <div id="question{{@index}}" class="step text-center" data-x={{dataX}} data-y={{dataY}} data-z={{dataZ}} 
       data-rotate-z={{dataRotateZ}} data-rotate-x={{dataRotateX}} data-rotate-y={{dataRotateY}} data-scale="1">
       <h1>{{question}}</h1>
-      <a href="#/question{{inc1 @index}}"><button id="1" type="button" class="btn btn-success">{{response1}}</button></a>
+      <a {{#if popover1ID}} id={{popover1ID}} {{/if}} href="#/question{{inc1 @index}}"><button id="1" type="button" class="btn btn-success">{{response1}}</button></a>
       {{#if response2}}
-        <a href="#/question{{inc1 @index}}"><button id="2" type="button" class="btn btn-warning">{{response2}}</button></a>
+        <a {{#if popover2ID}} id={{popover2ID}} {{/if}} href="#/question{{inc1 @index}}"><button id="2" type="button" class="btn btn-warning">{{response2}}</button></a>
       {{/if}}
-      <a href="#/question{{inc1 @index}}"><button id="3" type="button" class="btn btn-danger">{{response3}}</button></a>
+      <a {{#if popover3ID}} id={{popover3ID}} {{/if}} href="#/question{{inc1 @index}}"><button id="3" type="button" class="btn btn-danger">{{response3}}</button></a>
       {{#if response4}}
-        <a href="#/question{{inc1 @index}}"><button id="4" type="button" class="btn">{{response4}}</button></a>
+        <a {{#if popover4ID}} id={{popover4ID}} {{/if}} {{#unless noLink}}href="#/question{{inc1 @index}}"{{/unless}}><button id="4" type="button" class="btn">{{response4}}</button></a>
       {{/if}}
-    </div>
+
+      {{#if extraSemesterExplanation}} 
+        <br><br>
+        <div class="panel panel-default explanation" id="extraSemesterExplanation">
+           Many students are worried about the notion of taking an extra semester in their schedule for a class that isn’t required. In general, if you are in your first or second semester of a 4 year plan, you have plenty of time to fit in all your classes, even when accounting for required classes like L&S Breadths. If you’re willing (or planning) to take summer classes, then the cost of taking extra time is also diminished.
+        </div>
+      {{/if}}
+
+      {{#if labSectionExplanation}}
+        <br><br>
+        <div class="panel panel-default explanation" id="labSectionExplanation">
+          A lab section consists of 30 - 50 students at individual work stations with lab assistants walking about to assist in answering individual questions.
+        </div>
+      {{/if}}
+   </div>
    {{/each}}
 </script> 
 

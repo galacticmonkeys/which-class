@@ -88,5 +88,13 @@ body {
     transition: opacity 1s;
 }
 
-.impress-enabled .step.active { opacity: 1 }
-        
+.impress-enabled .step.active { 
+  opacity: 1 
+}
+
+.explanation {
+  font-size: small;
+  padding: 3% 7% 3% 7%;
+  background-color: #FFFFE6;
+}
+

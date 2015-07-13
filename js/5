@@ -4,11 +4,10 @@ var finalResults2 = "CS61A would not be suited for you";
 var finishedQuiz = false;
 var nocs61a = false;
 var nocs10 = false;
-var questionIndex = 0;
 
 //reading Rohin's table: rows, then columns
 //yes, it's rather unfortunate that question 1 comes before question 0
-//maybe change later but right now too tired :'(
+//maybe change later but right now too tired to care :'(
 //and also copy and paste is tedious sigh
 var table = {
   "1": {
@@ -111,6 +110,7 @@ function calculateFinal() {
     } 
     
     //check if score is within range
+    //find the first true option
     if (!nocs10) {
       for (var key in score1Table) {
         if (score1Table.hasOwnProperty(key)) {
@@ -205,11 +205,11 @@ $(document).ready(function() {
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
     },
-    {   question:"Are you able to delay the required CS courses by an extra semester?",
+    {   question:"Are you able to delay the required CS courses by an extra semester?", //hover here on extra semesters
         response1:"Yes",
         response3:"No",
-        popover3ID:"popoverQuestion4Button3",
-        extraSemesterExplanation:true,
+        popover1ID:"popoverQuestion4Button1",
+        popover3ID:"popoverQuestion4Button3", 
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
         dataZ:getRandomInt(-2500, 2500),
@@ -252,11 +252,10 @@ $(document).ready(function() {
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
     },
-    {   question:"Would you be comfortable asking for help in a lab section?",
+    {   question:"Would you be comfortable asking for help in a lab section?", //popup describing lab section
         response1:"Yes",
         response2:"Maybe",
         response3:"No",
-        labSectionExplanation:true,
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
         dataZ:getRandomInt(-2500, 2500),
@@ -305,15 +304,21 @@ $(document).ready(function() {
     }
   });
   
+  $('#popoverQuestion4Button1').popover({
+    trigger: "hover",
+    placement: "bottom",
+    content: "something here"
+  });
+
   $('#popoverQuestion4Button3').popover({
     html: true,
     trigger: "hover",
     placement: "bottom",
-    content: "In general, this would only apply if you fall into one of these categories:<br><br>" + 
-	  " - In your 4th or later semester (Spring of “Sophomore” year)<br>" +
-	  " - After your 2nd semester and trying to graduate in 3 years<br>" +
-	  " - Are a transfer student<br>" + 
-	  " - Already have a meticulous 4 year plan to fit in all your desired courses (double or triple majors)<br>" 
+    content: "In general, there are only a few places where you should be concerned about fitting in your classes. Are you:<br> " + 
+	  " - In your 4th or later semester (Spring of “Sophomore” year)" +
+	  " - After your 2nd semester and trying to graduate in 3 years" +
+	  " - Are a transfer student</li>" + 
+	  " - Already have a meticulous 4 year plan to fit in all your desired courses (double or triple majors)</li>" + 
   });
 
   $('#popoverQuestion0Button4').popover({ 
@@ -326,20 +331,7 @@ $(document).ready(function() {
     "advanced topics (assembly language, garbage collection, compilers)."
   });
 
-  $(".panel").hide();
-
   $(":button").on("click", function() {
-    questionIndex++;
-    if (questionIndex == 4) {
-      setTimeout(function() {
-        $("#extraSemesterExplanation").fadeIn(3000);
-      }, 500);
-    }
-    if (questionIndex == 8) {
-      setTimeout(function() {
-        $("#labSectionExplanation").fadeIn(3000);
-      }, 500);
-    }
     var questionNumber = $(this).closest("div").attr("id");
     var buttonValue = $(this).attr("id");
     answerBank[questionNumber] = Number(buttonValue);
