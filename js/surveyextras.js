@@ -15,20 +15,20 @@ var table = {
   },
   "2": {
     "1":[false, 2, false],
-    "2":[true, 3, false]       //"CS10, CS61AS(3)"
-    "3":[true, 3, false]       //"CS10, CS61AS(3)"
+    "2":[true, 3, false],       //"CS10, CS61AS(3)"
+    "3":[true, 3, false],       //"CS10, CS61AS(3)"
     "4":[true, 4, true]        //"CS10, CS61A, CS61AS"
   },
   "3": {
-    "1":[true, 3, false]       //"CS10, CS61AS(3)"
-    "2":[true, 3, false]       //"CS10, CS61AS(3)"
-    "3":[true, 4, true]        //"CS10, CS61A, CS61AS"
+    "1":[true, 3, false],       //"CS10, CS61AS(3)"
+    "2":[true, 3, false],       //"CS10, CS61AS(3)"
+    "3":[true, 4, true],        //"CS10, CS61A, CS61AS"
     "4":[true, 4, true]        //"CS10, CS61A, CS61AS"
   },
   "4": {
-    "1":[true, 4, true]        //"CS10, CS61A, CS61AS"
-    "2":[true, 4, true]        //"CS10, CS61A, CS61AS"
-    "3":[true, 4, true]        //"CS10, CS61A, CS61AS"
+    "1":[true, 4, true],        //"CS10, CS61A, CS61AS"
+    "2":[true, 4, true],        //"CS10, CS61A, CS61AS"
+    "3":[true, 4, true],        //"CS10, CS61A, CS61AS"
     "4":[true, 4, true]        //"CS10, CS61A, CS61AS"
   }
 }
@@ -92,17 +92,17 @@ function getTimeAndExperienceMessage(cs10, cs61AS, cs61A) {
   if (!(cs10 || cs61AS || cs61A)) {
     return "Your planned time commitment is too low - you would not be able to take any of the three classes."
   }
-  var result = "Based on your planned time commitment and prior programming experience, you should be able to take any of the following:\n";
+  var result = "Based on your planned time commitment and prior programming experience, you should be able to take any of the following:<br>";
   if (cs10) {
-    result += "CS 10\n";
+    result += "CS 10<br>";
   }
   if (cs61AS) {
-    result += cs61AS + " units of CS 61AS\n";
+    result += cs61AS + " units of CS 61AS<br>";
   }
   if (cs61A) {
-    result += "CS 61A\n";
+    result += "CS 61A<br>";
   }
-  return result + "\n";
+  return result + "<br>";
 }
 
 function calculateFinal() {
@@ -115,12 +115,13 @@ function calculateFinal() {
     var cs10 = tableResult[0];
     var cs61AS = tableResult[1];
     var cs61A = tableResult[2];
+    console.log(cs10 + " and " + cs61AS + " and " + cs61A);
     var message = getTimeAndExperienceMessage(cs10, cs61AS, cs61A);
 
     if (cs61A && answerBank.question6 == 3) {
       cs61A = false;
       cs61AS = 3;
-      message += "Since you are very worried about the pace of CS 61A, we have eliminated CS 61A, and reduced CS 61AS to 3 units.\n\n";
+      message += "Since you are very worried about the pace of CS 61A, we have eliminated CS 61A, and reduced CS 61AS to 3 units.<br><br>";
       console.log("cs61a eliminated");
     }
     if ((answerBank.question4 == 3) &&
@@ -128,7 +129,7 @@ function calculateFinal() {
          (answerBank.question2 == 2) ||
          (answerBank.question3 == 1))) {
       cs10 = false;
-      message += "Since you cannot take an extra semester and may take CS 61A or 61AS, we have eliminated CS 10.\n\n";
+      message += "Since you cannot take an extra semester and may take CS 61A or 61AS, we have eliminated CS 10.<br><br>";
       console.log("cs10 eliminated");
     } 
     
@@ -138,7 +139,7 @@ function calculateFinal() {
         if (score1Table.hasOwnProperty(key)) {
           var tempArray1 = key.split("-");
           if (inclusiveRange(score1, Number(tempArray1[0]), Number(tempArray1[1]))) {
-            message += score1Table[key] + ".\n\n";
+            message += score1Table[key] + ".<br><br>";
             break;
           }   
         }   
@@ -150,7 +151,7 @@ function calculateFinal() {
         if (score2Table.hasOwnProperty(key)) {
           var tempArray2 = key.split("-");
           if (inclusiveRange(score2, Number(tempArray2[0]), Number(tempArray2[1]))) {
-            message += score2Table[key] + ".\n\n";
+            message += score2Table[key] + ".<br><br>";
             break;
           }
         }
