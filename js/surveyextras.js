@@ -66,6 +66,7 @@ var answerBank = {
   question10:0
 }
 
+// some auxiliary functions 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -76,6 +77,10 @@ function getRandomInt(min, max) {
 
 function inclusiveRange(x, a, b) {
   return ((a <= x) && (x <= b));
+}
+
+function lowerCaseFirstLetter(string) {
+      return string.charAt(0).toLowerCase() + string.slice(1);
 }
 
 function calculateScore1() {
@@ -104,7 +109,7 @@ function calculateFinal() {
       console.log("cs10 eliminated");
     } 
     
-    //check of score1 is within range
+    //check if score is within range
     //find the first true option
     if (!nocs10) {
       for (var key in score1Table) {
@@ -129,10 +134,11 @@ function calculateFinal() {
         }   
       } 
     }
+    
     bootbox.alert("Based on time commitment and prior experience, " + 
       "these are the classes most suited for you: " + 
        table[answerBank.question2][answerBank.question1] + ". " +
-      "Your responses also indicate that " + finalResults1 + " and " + finalResults2 + ".",
+      "Your responses also indicate that " + lowerCaseFirstLetter(finalResults1) + " and " +  lowerCaseFirstLetter(finalResults2) + ".",
        function() {
           window.location = 'index.html';
        }
