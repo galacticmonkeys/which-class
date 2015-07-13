@@ -1,9 +1,5 @@
 var score1, score2;
-var finalResults1 = "CS10 would not be suited for you";
-var finalResults2 = "CS61A would not be suited for you";
 var finishedQuiz = false;
-var nocs61a = false;
-var nocs10 = false;
 var questionIndex = 0;
 
 //reading Rohin's table: rows, then columns
@@ -12,28 +8,28 @@ var questionIndex = 0;
 //and also copy and paste is tedious sigh
 var table = {
   "1": {
-    "1":"no class",
-    "2":"CS61AS(2)",
-    "3":"CS61AS(2)",
-    "4":"CS10, CS61AS(3)"
+    "1":[false, false, false], //"no class",
+    "2":[false, 2, false],     //"CS61AS(2)",
+    "3":[false, 2, false],     //"CS61AS(2)",
+    "4":[true, 3, false]       //"CS10, CS61AS(3)"
   },
   "2": {
-    "1":"CS61AS(2)",
-    "2":"CS10, CS61AS(3)",
-    "3":"CS10, CS61AS(3)",
-    "4":"CS10, CS61A, CS61AS"
+    "1":[false, 2, false],
+    "2":[true, 3, false],       //"CS10, CS61AS(3)"
+    "3":[true, 3, false],       //"CS10, CS61AS(3)"
+    "4":[true, 4, true]        //"CS10, CS61A, CS61AS"
   },
   "3": {
-    "1":"CS10, CS61AS(3)",
-    "2":"CS10, CS61AS(3)",
-    "3":"CS10, CS61A, CS61AS",
-    "4":"CS10, CS61A, CS61AS"
+    "1":[true, 3, false],       //"CS10, CS61AS(3)"
+    "2":[true, 3, false],       //"CS10, CS61AS(3)"
+    "3":[true, 4, true],        //"CS10, CS61A, CS61AS"
+    "4":[true, 4, true]        //"CS10, CS61A, CS61AS"
   },
   "4": {
-    "1":"CS10, CS61A, CS61AS",
-    "2":"CS10, CS61A, CS61AS",
-    "3":"CS10, CS61A, CS61AS",
-    "4":"CS10, CS61A, CS61AS",
+    "1":[true, 4, true],        //"CS10, CS61A, CS61AS"
+    "2":[true, 4, true],        //"CS10, CS61A, CS61AS"
+    "3":[true, 4, true],        //"CS10, CS61A, CS61AS"
+    "4":[true, 4, true]        //"CS10, CS61A, CS61AS"
   }
 }
 
@@ -92,53 +88,77 @@ function calculateScore2() {
   score2 = (2 * answerBank.question6) + (2 * answerBank.question7) + answerBank.question9 + answerBank.question10;
 }
 
+function getTimeAndExperienceMessage(cs10, cs61AS, cs61A) {
+  if (!(cs10 || cs61AS || cs61A)) {
+    return "Your planned time commitment is too low - you would not be able to take any of the three classes."
+  }
+  var result = "Based on your planned time commitment and prior programming experience, you should be able to take any of the following:<br>";
+  if (cs10) {
+    result += "CS 10<br>";
+  }
+  if (cs61AS) {
+    result += cs61AS + " units of CS 61AS<br>";
+  }
+  if (cs61A) {
+    result += "CS 61A<br>";
+  }
+  return result + "<br>";
+}
+
 function calculateFinal() {
   if (finishedQuiz) {
     calculateScore1();
     calculateScore2();
     console.log("score1 is " + score1);
     console.log("score2 is " + score2);
-    if (answerBank.question6 == 3) {
-      nocs61A = true;
+    var tableResult = table[answerBank.question1][answerBank.question0];
+    var cs10 = tableResult[0];
+    var cs61AS = tableResult[1];
+    var cs61A = tableResult[2];
+    console.log(cs10 + " and " + cs61AS + " and " + cs61A);
+    var message = getTimeAndExperienceMessage(cs10, cs61AS, cs61A);
+
+    if (cs61A && answerBank.question6 == 3) {
+      cs61A = false;
+      cs61AS = 3;
+      message += "Since you are very worried about the pace of CS 61A, we have eliminated CS 61A, and reduced CS 61AS to 3 units.<br><br>";
       console.log("cs61a eliminated");
     }
     if ((answerBank.question4 == 3) &&
-        ((answerBank.question2 == 1 ) ||
+        ((answerBank.question2 == 1) ||
          (answerBank.question2 == 2) ||
          (answerBank.question3 == 1))) {
-      nocs10 = true;
+      cs10 = false;
+      message += "Since you cannot take an extra semester and may take CS 61A or 61AS, we have eliminated CS 10.<br><br>";
       console.log("cs10 eliminated");
     } 
     
     //check if score is within range
-    if (!nocs10) {
+    if (cs10 && (cs61AS || cs61A)) {
       for (var key in score1Table) {
         if (score1Table.hasOwnProperty(key)) {
           var tempArray1 = key.split("-");
           if (inclusiveRange(score1, Number(tempArray1[0]), Number(tempArray1[1]))) {
-            finalResults1 = score1Table[key];
+            message += score1Table[key] + ".<br><br>";
             break;
           }   
         }   
       } 
     }
     
-    if (!nocs61a) {
+    if (cs61A && cs61AS) {
       for (var key in score2Table) {
         if (score2Table.hasOwnProperty(key)) {
           var tempArray2 = key.split("-");
           if (inclusiveRange(score2, Number(tempArray2[0]), Number(tempArray2[1]))) {
-            finalResults2 = score2Table[key];
+            message += score2Table[key] + ".<br><br>";
             break;
-          }   
-        }   
+          }
+        }
       } 
     }
     
-    bootbox.alert("Based on time commitment and prior experience, " + 
-      "these are the classes most suited for you: " + 
-       table[answerBank.question2][answerBank.question1] + ". " +
-      "Your responses also indicate that " + lowerCaseFirstLetter(finalResults1) + " and " +  lowerCaseFirstLetter(finalResults2) + ".",
+    bootbox.alert(message,
        function() {
           window.location = 'index.html';
        }
@@ -230,7 +250,7 @@ $(document).ready(function() {
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
     },
-    {   question:"Are you worried that you will not be able to keep up with the pace of work in 61A? ",
+    {   question:"Are you worried that you will not be able to keep up with the pace of work in 61A?",
         response1:"Not worried",
         response2:"A little worried",
         response3:"Very worried",
