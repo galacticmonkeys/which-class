@@ -111,7 +111,7 @@ function calculateFinal() {
     calculateScore2();
     console.log("score1 is " + score1);
     console.log("score2 is " + score2);
-    var tableResult = table[answerBank.question2][answerBank.question1];
+    var tableResult = table[answerBank.question1][answerBank.question0];
     var cs10 = tableResult[0];
     var cs61AS = tableResult[1];
     var cs61A = tableResult[2];
