@@ -191,11 +191,11 @@ $(document).ready(function() {
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
     },
-    {   question:"How many hours per week do you plan to commit to the course you take?",
+    {   question:"How many hours per week do you plan to commit to the course you take, INCLUDING time spent in lecture, lab, discussion, etc?",
         response1:"5",
         response2:"10",
         response3:"15",
-	      response4:"20", 
+        response4:"20+", 
         dataX:getRandomInt(-2500, 2500), 
         dataY:getRandomInt(-2500, 2500), 
         dataZ:getRandomInt(-2500, 2500),
