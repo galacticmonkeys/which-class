@@ -92,7 +92,12 @@ function getTimeAndExperienceMessage(cs10, cs61AS, cs61A) {
   if (!(cs10 || cs61AS || cs61A)) {
     return "Your planned time commitment is too low - you would not be able to take any of the three classes."
   }
-  var result = "Based on your planned time commitment and prior programming experience, you should be able to take any of the following:<br>";
+  var result = "Based on your planned time commitment and prior programming experience, ";
+  if((cs10 + (cs61AS != 0) + cs61A) > 1){
+    result += "you should be able to take any of the following:<br>";
+  } else {
+    result += "we recommend you take the following:<br>"
+  }
   if (cs10) {
     result += "CS 10<br>";
   }
@@ -116,7 +121,7 @@ function calculateFinal() {
     var cs61AS = tableResult[1];
     var cs61A = tableResult[2];
     console.log(cs10 + " and " + cs61AS + " and " + cs61A);
-    var message = getTimeAndExperienceMessage(cs10, cs61AS, cs61A);
+    var message = "";
 
     if (cs61A && answerBank.question6 == 3) {
       cs61A = false;
@@ -132,6 +137,8 @@ function calculateFinal() {
       message += "Since you cannot take an extra semester and may take CS 61A or 61AS, we have eliminated CS 10.<br><br>";
       console.log("cs10 eliminated");
     } 
+    
+    message += getTimeAndExperienceMessage(cs10, cs61AS, cs61A);
     
     //check if score is within range
     if (cs10 && (cs61AS || cs61A)) {
