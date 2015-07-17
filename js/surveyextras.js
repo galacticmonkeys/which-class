@@ -1,11 +1,6 @@
 var score1, score2;
 var finishedQuiz = false;
-var questionIndex = 0;
 
-//reading Rohin's table: rows, then columns
-//yes, it's rather unfortunate that question 1 comes before question 0
-//maybe change later but right now too tired :'(
-//and also copy and paste is tedious sigh
 var table = {
   "1": {
     "1":[false, false, false], //"no class",
@@ -162,9 +157,9 @@ function calculateFinal() {
        function() {
           window.location = 'index.html';
        }
-       );
+    );
   } else {
-    alert("you haven't answered all the questions!");
+    bootbox.alert("you haven't answered all the questions!");
   }
 }
 
@@ -191,7 +186,7 @@ $(document).ready(function() {
         dataRotateX:getRandomInt(0, 180),
         dataRotateY:getRandomInt(0, 180) 
     },
-    {   question:"How many hours per week do you plan to commit to the course you take, INCLUDING time spent in lecture, lab, discussion, etc?",
+    {   question:"How many hours per week do you plan to commit to the course you take, <em>including</em> time spent in lecture, lab, discussion, etc?",
         response1:"5",
         response2:"10",
         response3:"15",
@@ -308,14 +303,14 @@ $(document).ready(function() {
     },
   ];
   var theTemplateScript = $("#template").html(); 
-  var theTemplate = Handlebars.compile (theTemplateScript); 
+  var theTemplate = Handlebars.compile(theTemplateScript); 
   $("#impress").append(theTemplate(questionBank)); 
 
   $.getScript("js/impress.min.js", function() {
     impress().init(); 
   });
 
-  window.addEventListener("beforeunload", function (e) {
+  $(window).on("beforeunload", function (e) {
     if (!finishedQuiz) {
       var confirmationMessage = "I won't be able to save your progress. ";
       (e || window.event).returnValue = confirmationMessage;
@@ -346,18 +341,20 @@ $(document).ready(function() {
 
   $(".panel").hide();
 
-  $(":button").on("click", function() {
-    questionIndex++;
-    if (questionIndex == 4) {
+  $(window).on("hashchange", function() {
+    if (window.location.hash == "#/question4") {
       setTimeout(function() {
         $("#extraSemesterExplanation").fadeIn(3000);
       }, 500);
     }
-    if (questionIndex == 8) {
+    if (window.location.hash == "#/question8") {
       setTimeout(function() {
         $("#labSectionExplanation").fadeIn(3000);
       }, 500);
     }
+  });
+
+  $(":button").on("click", function() {
     var questionNumber = $(this).closest("div").attr("id");
     var buttonValue = $(this).attr("id");
     answerBank[questionNumber] = Number(buttonValue);

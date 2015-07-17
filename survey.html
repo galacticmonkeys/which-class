@@ -26,7 +26,7 @@
    {{#each this}}
     <div id="question{{@index}}" class="step text-center" data-x={{dataX}} data-y={{dataY}} data-z={{dataZ}} 
       data-rotate-z={{dataRotateZ}} data-rotate-x={{dataRotateX}} data-rotate-y={{dataRotateY}} data-scale="1">
-      <h1>{{question}}</h1>
+      <h1>{{{question}}}</h1>
       <a {{#if popover1ID}} id={{popover1ID}} {{/if}} href="#/question{{inc1 @index}}"><button id="1" type="button" class="btn btn-success">{{response1}}</button></a>
       {{#if response2}}
         <a {{#if popover2ID}} id={{popover2ID}} {{/if}} href="#/question{{inc1 @index}}"><button id="2" type="button" class="btn btn-warning">{{response2}}</button></a>
