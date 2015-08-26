@@ -18,6 +18,7 @@
  
 .center-align {
   position: absolute;
+  color: white;
   left: 50%;
   top: 50%;
   bottom: auto;
